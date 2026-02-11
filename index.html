@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frenzy Valentine's Menu</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ios-bg: #f2f2f7;
+            --ios-glass: rgba(255, 255, 255, 0.8);
+            --frenzy-pink: #ffafcc;
+            --ios-blue: #007aff;
+            --valentine-red: #c9184a;
+        }
+
+        body {
+            background-color: #1c1c1e;
+            font-family: 'Inter', -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* --- iOS Styled Flyer --- */
+        #flyer {
+            width: 400px;
+            background: linear-gradient(180deg, #ffafbd 0%, #ffc3a0 100%);
+            border-radius: 45px;
+            padding: 30px 20px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        /* Logo Styling */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .logo-img {
+            width: 90px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            color: var(--valentine-red);
+            font-size: 3rem;
+            text-align: center;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .ios-section-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            color: rgba(0,0,0,0.5);
+            margin: 20px 0 8px 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Glassmorphism List Groups */
+        .ios-list {
+            background: var(--ios-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 14px;
+            margin-bottom: 15px;
+        }
+
+        .ios-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 0.5px solid rgba(0,0,0,0.1);
+        }
+        .ios-row:last-child { border-bottom: none; }
+
+        .item-label { color: #000; font-size: 15px; }
+        .item-price { color: var(--valentine-red); font-weight: 600; font-size: 15px; }
+        .sub-text { font-size: 12px; color: #666; display: block; }
+
+        /* Combo Badges */
+        .combo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            padding: 0 5px;
+        }
+        .combo-item {
+            background: rgba(255,255,255,0.4);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: white;
+            font-size: 13px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 14px 28px;
+            background: var(--ios-blue);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,122,255,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="flyer">
+        <div class="logo-container">
+            <img src="logo.png" alt="Frenzy Logo" class="logo-img">
+        </div>
+        
+        <h1>Valentine's Menu</h1>
+
+        <div class="ios-section-title">Cinnamon Rolls</div>
+        <div class="ios-list">
+            <div class="ios-row"><span class="item-label">12 Mini Rolls</span><span class="item-price">P200</span></div>
+            <div class="ios-row"><span class="item-label">24 Mini Rolls</span><span class="item-price">P400</span></div>
+            <div class="ios-row"><span class="item-label">6 Large Rolls</span><span class="item-price">P200</span></div>
+            <div class="ios-row"><span class="item-label">12 Large Rolls</span><span class="item-price">P400</span></div>
+        </div>
+
+        <div class="ios-section-title">Cakes & Cupcakes</div>
+        <div class="ios-list">
+            <div class="ios-row"><span class="item-label">Bento Cake</span><span class="item-price">P150</span></div>
+            <div class="ios-row"><span class="item-label">6 Cupcakes</span><span class="item-price">P150</span></div>
+            <div class="ios-row"><span class="item-label">12 Cupcakes</span><span class="item-price">P300</span></div>
+            <div class="ios-row">
+                <span class="item-label">Add Edible Photo<br><small class="sub-text">Any cake size</small></span>
+                <span class="item-price">+P30</span>
+            </div>
+        </div>
+
+        <div class="ios-section-title">Bento + Cupcake Deals</div>
+        <div class="combo-grid">
+            <div class="combo-item"><small>+2 Cups</small><br><strong>P200</strong></div>
+            <div class="combo-item"><small>+5 Cups</small><br><strong>P300</strong></div>
+            <div class="combo-item"><small>+8 Cups</small><br><strong>P400</strong></div>
+        </div>
+
+        <div class="ios-section-title">Brownies & Fun</div>
+        <div class="ios-list">
+            <div class="ios-row"><span class="item-label">Single Brownie</span><span class="item-price">P30</span></div>
+            <div class="ios-row"><span class="item-label">Box of 4</span><span class="item-price">P120</span></div>
+            <div class="ios-row"><span class="item-label">Box of 8</span><span class="item-price">P220</span></div>
+            <div class="ios-row"><span class="item-label">DIY Bento Cake Kit</span><span class="item-price">P200</span></div>
+        </div>
+
+        <div class="footer">
+            <strong>Spread the love with Frenzy</strong><br>
+            Limited Valentine's Slots Available
+        </div>
+    </div>
+
+    <button onclick="takeSnapshot()">Download Flyer Photo</button>
+
+    <script>
+        function takeSnapshot() {
+            const flyer = document.querySelector("#flyer");
+            html2canvas(flyer, { scale: 3, borderRadius: 45 }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Frenzy_Valentines_Flyer.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
