@@ -1,202 +1,271 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frenzy Valentine's Flyer</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <title>Sarona City | A City Within The City</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS CSS for Fluid Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-pink: #fce4ec;
-            --dark-red: #8b0000;
-            --soft-pink: #ffafcc;
-        }
-
-        body {
-            background-color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* The Main Flyer Container */
-        #flyer-frame {
-            width: 450px;
-            background: var(--bg-pink);
-            background-image: url('https://www.transparenttextures.com/patterns/pinstripe-light.png'); /* Subtle texture */
-            padding: 40px 20px;
-            border-radius: 10px;
-            position: relative;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
-            text-align: center;
-            border: 8px solid white;
-            overflow: hidden;
-        }
-
-        /* Decorative Hearts */
-        .heart { position: absolute; color: #ff4d6d; opacity: 0.6; font-size: 20px; }
-        .h1 { top: 20px; left: 20px; }
-        .h2 { top: 60px; right: 30px; }
-        .h3 { bottom: 40px; left: 50px; }
-
-        /* Header Section */
-        .logo { width: 80px; margin-bottom: 5px; }
+        /* Premium Typography */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
         
-        .main-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4.5rem;
-            color: var(--dark-red);
-            margin: 0;
-            line-height: 0.9;
+        :root { 
+            --gold: #c5a059;
+            --gold-light: #e8d099;
         }
-
-        .tagline {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 20px;
-            font-weight: 300;
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: #f3f4f6; 
+            /* Rich background image so the glass has something to blur */
+            background-image: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)), url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
         }
-
-        /* Curved Ribbon Banner */
-        .banner {
-            background: #fffafa;
-            border: 2px solid var(--soft-pink);
-            border-radius: 50px / 20px;
-            padding: 10px 20px;
-            display: inline-block;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            position: relative;
+        
+        /* Premium iOS-Inspired Glassmorphism */
+        .glass-panel { 
+            background: rgba(20, 20, 22, 0.4); 
+            backdrop-filter: blur(24px); 
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-        .banner::before { content: '❤'; position: absolute; left: 10px; color: var(--soft-pink); }
-        .banner::after { content: '❤'; position: absolute; right: 10px; color: var(--soft-pink); }
-
-        .banner h2 {
-            font-family: 'Great Vibes', cursive;
-            margin: 0;
-            color: var(--dark-red);
-            font-size: 1.8rem;
+        
+        /* Subtle Gold Accents */
+        .glass-panel:hover {
+            border-color: rgba(197, 160, 89, 0.3);
+            background: rgba(30, 30, 32, 0.5);
+            transition: all 0.5s ease;
         }
-
-        /* Menu Content */
-        .menu-container {
-            text-align: left;
-            padding: 0 20px;
-            color: #444;
-        }
-
-        .section-header {
-            font-weight: 600;
-            color: var(--dark-red);
-            border-bottom: 1px solid var(--soft-pink);
-            margin: 15px 0 5px 0;
-            display: flex;
-            align-items: center;
-        }
-        .section-header::before { content: '❤ '; font-size: 10px; margin-right: 8px; }
-
-        .menu-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            margin-bottom: 4px;
-        }
-
-        .price { font-weight: 600; color: var(--dark-red); }
-
-        /* Footer / Socials */
-        .footer-info {
-            margin-top: 30px;
-            background: rgba(255,255,255,0.5);
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 12px;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 5px;
-            font-weight: 600;
-        }
-
-        button {
-            margin-top: 25px;
-            padding: 12px 25px;
-            background: var(--dark-red);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-        }
+        
+        .gold-text { color: var(--gold); }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Image Hover Zoom */
+        .img-container { overflow: hidden; }
+        .img-container img { transition: transform 0.7s ease; }
+        .glass-panel:hover .img-container img { transform: scale(1.05); }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-yellow-900 selection:text-white">
 
-    <div id="flyer-frame">
-        <span class="heart h1">❤</span><span class="heart h2">❤</span><span class="heart h3">❤</span>
-
-        <img src="logo.png" alt="Frenzy Logo" class="logo">
-        <h1 class="main-title">Valentine's Day</h1>
-        <p class="tagline">Spread the Love with Delicious Treats</p>
-
-        <div class="banner">
-            <h2>Layered in Love by Dilia</h2>
+    <!-- Fixed Glass Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0 border-t-0 border-r-0 border-l-0 px-6 py-5 flex justify-between items-center transition-all">
+        <div class="font-serif text-2xl tracking-widest uppercase">Sarona <span class="gold-text italic">City</span></div>
+        <div class="hidden md:flex gap-10 text-[10px] uppercase tracking-[0.2em] font-semibold text-gray-300">
+            <a href="#about" class="hover:text-yellow-500 transition-colors">About</a>
+            <a href="#developments" class="hover:text-yellow-500 transition-colors">Developments</a>
+            <a href="#mall" class="hover:text-yellow-500 transition-colors">Porto Mall</a>
+            <a href="#contact" class="hover:text-yellow-500 transition-colors">Contact</a>
         </div>
+    </nav>
 
-        <div class="menu-container">
-            <div class="section-header">Cinnamon Rolls</div>
-            <div class="menu-row"><span>12 Mini Rolls</span> <span class="price">P200</span></div>
-            <div class="menu-row"><span>24 Mini Rolls</span> <span class="price">P400</span></div>
-            <div class="menu-row"><span>6 Large Rolls</span> <span class="price">P200</span></div>
-            <div class="menu-row"><span>12 Large Rolls</span> <span class="price">P400</span></div>
-
-            <div class="section-header">Cakes & Cupcakes</div>
-            <div class="menu-row"><span>Bento Cake</span> <span class="price">P150</span></div>
-            <div class="menu-row"><span>6 Cupcakes</span> <span class="price">P150</span></div>
-            <div class="menu-row"><span>12 Cupcakes</span> <span class="price">P300</span></div>
-            <div class="menu-row"><span>Add Edible Picture</span> <span class="price">+P30</span></div>
-
-            <div class="section-header">Bento Cake Combos</div>
-            <div class="menu-row"><span>With 2 Cupcakes</span> <span class="price">P200</span></div>
-            <div class="menu-row"><span>With 5 Cupcakes</span> <span class="price">P300</span></div>
-            <div class="menu-row"><span>With 8 Cupcakes</span> <span class="price">P400</span></div>
-
-            <div class="section-header">Brownie Box</div>
-            <div class="menu-row"><span>Single Brownie</span> <span class="price">P30</span></div>
-            <div class="menu-row"><span>Box of 4</span> <span class="price">P120</span></div>
-            <div class="menu-row"><span>Box of 8</span> <span class="price">P220</span></div>
-            
-            <div class="section-header">Experiences</div>
-            <div class="menu-row"><span>DIY Bento Cake Kit</span> <span class="price">P200</span></div>
+    <!-- Hero Section -->
+    <header class="h-screen flex flex-col justify-center items-center text-center p-4 relative">
+        <div data-aos="fade-up" data-aos-duration="1500">
+            <span class="gold-text uppercase tracking-[0.4em] text-xs mb-6 block font-medium">We Build Only The Best</span>
+            <h1 class="font-serif text-5xl md:text-8xl mb-8 leading-tight drop-shadow-2xl">
+                A City Within <br><span class="italic text-yellow-500/90">The City</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-gray-300 font-light text-lg tracking-wide">
+                Nestled between Limpopo Drive and Segoditshane Way in Tsholofelo East, Gaborone. The home you have dreamt of is now a reality.
+            </p>
         </div>
+    </header>
 
-        <div class="footer-info">
-            <p>Order now and make your Valentine's Day sweet!</p>
-            <div class="social-link">
-                <span>📞 Call/WhatsApp: +27 73 558 4187</span>
+    <!-- About Section -->
+    <section id="about" class="max-w-5xl mx-auto px-6 mb-32">
+        <div class="glass-panel p-10 md:p-16 rounded-[2rem]" data-aos="fade-up">
+            <h2 class="gold-text uppercase tracking-widest text-[10px] mb-6 font-semibold">About The Developers</h2>
+            <p class="font-serif text-2xl md:text-3xl leading-relaxed mb-8">
+                RIC DEVELOPMENT (PTY) Ltd is an innovative property development enterprise established by a group of investors based in Africa.
+            </p>
+            <p class="text-gray-400 font-light text-sm md:text-base leading-relaxed mb-6">
+                Promoting a community of fine living and comfort, Sarona City is created for those welcoming a lifestyle full of energy and excitement with all required amenities within a 2-kilometer radius. Pick 'n Pay Hyper, fashion stores, ATM machines, Engen service station, preschool, and luxurious accommodation are all within walking distance, surrounded by lovely landscaped walkways.
+            </p>
+            <div class="inline-block border border-yellow-700/50 rounded-full px-6 py-2 text-xs uppercase tracking-widest text-yellow-500 bg-yellow-900/20">
+                🏆 1st Prize, Real Estate Services - Botswana Consumer Fair 2025
             </div>
         </div>
-    </div>
+    </section>
 
-    <button onclick="download()">Download as Image</button>
+    <!-- Developments Section -->
+    <section id="developments" class="max-w-7xl mx-auto px-6 mb-32">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-serif mb-4">Property Developments</h2>
+            <p class="text-gray-400 font-light tracking-wide">Quality urban multi-family housing options.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <!-- Sigma (Selling) -->
+            <div class="glass-panel p-6 rounded-[2rem] flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                <div class="img-container h-72 rounded-3xl mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover" alt="Sigma Townhouses">
+                    <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-1 rounded-full text-[10px] uppercase tracking-widest">Available</div>
+                </div>
+                <p class="gold-text text-[10px] uppercase tracking-widest mb-2 font-semibold">Townhouses</p>
+                <h3 class="text-3xl font-serif mb-4">The Habitat Sigma</h3>
+                <p class="text-gray-400 text-sm font-light leading-relaxed flex-grow">
+                    Nestled along the boundary of Sarona City and designed to be lived in. The Habitat Sigma comprises eighteen (18) expertly designed luxury townhouses of double and triple volume. "...first of its kind in Gaborone."
+                </p>
+            </div>
 
+            <!-- Kappa (Selling) -->
+            <div class="glass-panel p-6 rounded-[2rem] flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                <div class="img-container h-72 rounded-3xl mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover" alt="Kappa Apartments">
+                    <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-1 rounded-full text-[10px] uppercase tracking-widest">Available</div>
+                </div>
+                <p class="gold-text text-[10px] uppercase tracking-widest mb-2 font-semibold">Apartments</p>
+                <h3 class="text-3xl font-serif mb-4">The Habitat Kappa</h3>
+                <p class="text-gray-400 text-sm font-light leading-relaxed flex-grow">
+                    Where luxury and convenience converge. This development is within close proximity to Sarona City Mall, the Hibiscus Pre-School, and Botlhale International School.
+                </p>
+            </div>
+
+            <!-- Alpha (Sold Out) -->
+            <div class="glass-panel p-6 rounded-[2rem] flex flex-col opacity-80" data-aos="fade-up" data-aos-delay="100">
+                <div class="img-container h-72 rounded-3xl mb-6 relative grayscale">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover" alt="Alpha Apartments">
+                    <div class="absolute top-4 right-4 bg-red-900/80 backdrop-blur-md border border-red-500/30 px-4 py-1 rounded-full text-[10px] uppercase tracking-widest">Sold Out</div>
+                </div>
+                <p class="text-gray-500 text-[10px] uppercase tracking-widest mb-2 font-semibold">Apartments</p>
+                <h3 class="text-3xl font-serif mb-4 text-gray-300">The Habitat Alpha</h3>
+                <p class="text-gray-400 text-sm font-light leading-relaxed flex-grow">
+                    These ready-for-occupation units feature an open plan living style with sleek fittings. All units on the ground floor lead to a private backyard garden and the others to a balcony.
+                </p>
+            </div>
+
+            <!-- Beta & Delta (Sold Out) -->
+            <div class="glass-panel p-6 rounded-[2rem] flex flex-col opacity-80" data-aos="fade-up" data-aos-delay="200">
+                <div class="img-container h-72 rounded-3xl mb-6 relative grayscale">
+                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover" alt="Beta & Delta Townhouses">
+                    <div class="absolute top-4 right-4 bg-red-900/80 backdrop-blur-md border border-red-500/30 px-4 py-1 rounded-full text-[10px] uppercase tracking-widest">Sold Out</div>
+                </div>
+                <p class="text-gray-500 text-[10px] uppercase tracking-widest mb-2 font-semibold">Townhouses</p>
+                <h3 class="text-3xl font-serif mb-4 text-gray-300">Habitat Beta & Delta</h3>
+                <p class="text-gray-400 text-sm font-light leading-relaxed flex-grow">
+                    Spacious, visually stunning townhouses of 3 and 4 bedrooms. All units have a private backyard garden, 2 parking spaces, and access to communal garden spaces as well as a public park.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Mall Section with Map -->
+    <section id="mall" class="max-w-7xl mx-auto px-6 mb-32">
+        <div class="glass-panel p-8 md:p-12 rounded-[3rem] grid lg:grid-cols-2 gap-12 items-center" data-aos="zoom-in-up">
+            <div>
+                <h2 class="text-4xl md:text-5xl font-serif mb-4 italic">Porto <span class="gold-text block mt-2 text-3xl not-italic">Sarona City Mall</span></h2>
+                <div class="w-16 h-px bg-yellow-600/50 mb-8"></div>
+                <p class="text-gray-300 font-light leading-relaxed mb-6">
+                    The first shopping centre to sit within the Estate, Sarona City Mall complements the unique lifestyle living with a tenant mix of 39 shops. This stunning shopping centre consists of 7,000 square meters developed by RIC Development Botswana.
+                </p>
+                <ul class="space-y-4 text-sm font-light text-gray-400 mb-8">
+                    <li class="flex items-start">
+                        <span class="gold-text mr-3">✦</span>
+                        <span><strong>Tenant Mix:</strong> Fine dining, diverse fashion, hair & beauty, pharmaceuticals, groceries, stationery, laundromat, and a dedicated medical centre.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="gold-text mr-3">✦</span>
+                        <span><strong>Convenience:</strong> Designed for uniqueness in a convenient set-up with access to free parking for all shoppers.</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Live Location Map -->
+            <div class="h-[450px] w-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500 pointer-events-none"></div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.356262441999!2d25.932976!3d-24.627685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1eb9159930f3c5f5%3A0x6b72a088bebc8012!2sSarona%20City%20Mall!5e0!3m2!1sen!2sbw!4v1689000000000" class="w-full h-full filter contrast-125" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact Information -->
+    <footer id="contact" class="max-w-7xl mx-auto px-6 pb-12">
+        <div class="glass-panel p-10 md:p-16 rounded-t-[3rem] rounded-b-[1rem]" data-aos="fade-up">
+            <div class="grid md:grid-cols-3 gap-12 border-b border-white/10 pb-12 mb-8">
+                
+                <!-- Sales Team -->
+                <div>
+                    <h4 class="gold-text uppercase text-[10px] font-semibold tracking-widest mb-6">Our Sales Team</h4>
+                    <div class="space-y-5">
+                        <div>
+                            <p class="font-serif text-lg">Victor Kobe</p>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-1">Sales & Marketing Manager</p>
+                            <p class="text-sm font-light text-gray-400">+267 7190 5441 <br> victork@ricdevelopment.co.bw</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-lg">Lefa Mase</p>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-1">Sales Officer</p>
+                            <p class="text-sm font-light text-gray-400">+267 7147 0909 <br> lefam@ricdevelopment.co.bw</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-lg">Dithupa Dithupa</p>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-1">Admin Clerk</p>
+                            <p class="text-sm font-light text-gray-400">+267 7147 0909 <br> dithupad@ricdevelopment.co.bw</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Office Contact -->
+                <div>
+                    <h4 class="gold-text uppercase text-[10px] font-semibold tracking-widest mb-6">Head Office</h4>
+                    <div class="space-y-2 text-sm font-light text-gray-400 mb-8">
+                        <p>+267 318 1436</p>
+                        <p>pinkyg@saronacity.co.bw</p>
+                        <p class="hover:text-gold-light transition cursor-pointer">www.ricdevelopment.co.bw</p>
+                    </div>
+                    
+                    <h4 class="gold-text uppercase text-[10px] font-semibold tracking-widest mb-6">Other Developments</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li><strong>Botswana:</strong> Eco City (Gaborone)</li>
+                        <li><strong>South Africa:</strong> The Habitat (Rivonia), One On Heather (Midrand), Tribeca Hill (Lonehill), Westminster Place (Bryanston)</li>
+                    </ul>
+                </div>
+
+                <!-- Branding -->
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <div class="font-serif text-3xl tracking-widest uppercase mb-4">Sarona <span class="gold-text italic block text-xl mt-1">City</span></div>
+                        <p class="text-xs font-light text-gray-500 leading-relaxed">A city within the city. Providing quality urban multi-family housing options and premium retail experiences.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center text-[10px] uppercase tracking-widest text-gray-600">
+                &copy; 2026 RIC Development Botswana (Pty) Ltd. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts for Animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        function download() {
-            html2canvas(document.querySelector("#flyer-frame")).then(canvas => {
-                let link = document.createElement('a');
-                link.download = 'Frenzy-Valentine-Flyer.png';
-                link.href = canvas.toDataURL();
-                link.click();
-            });
-        }
+        // Initialize AOS animations
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-quart',
+        });
+        
+        // Add subtle background shift on mouse move for extra 3D feel
+        document.addEventListener('mousemove', (e) => {
+            const body = document.querySelector('body');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            body.style.backgroundPosition = `${x * 10}% ${y * 10}%`;
+        });
     </script>
 </body>
 </html>
